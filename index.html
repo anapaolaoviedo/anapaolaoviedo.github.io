@@ -55,6 +55,30 @@
       color: white;
       margin-top: 2rem;
     }
+    nav {
+  background: #ffcce0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  background-color: #ff99c8;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-button:hover {
+  background-color: #ff66a3;
+  transform: translateY(-2px);
+}
   </style>
 </head>
 <body>
@@ -65,13 +89,12 @@
   </header>
 
   <nav>
-    
-    <a href="#about">About Me</a>
-    <a href="#thoughts">Thoughts</a>
-    <a href="#projects">Projects</a>
-    <a href="#research">Research</a>
-    <a href="#papers">Papers</a>
-  </nav>
+  <a href="aboutme.html" class="nav-button">About Me</a>
+  <a href="#thoughts" class="nav-button">Thoughts</a>
+  <a href="#projects" class="nav-button">Projects</a>
+  <a href="#research" class="nav-button">Research</a>
+  <a href="#papers" class="nav-button">Papers</a>
+</nav>
 
   <section id="about">
     <h2>💖 About Me</h2>
@@ -81,7 +104,7 @@
 
   <section id="thoughts">
     <h2>💭 Thoughts</h2>
-    <p>Right now I'm developing BRAIN. The cognitive system of an AI agent. It is my final proyect as an AI & Software Intern @EngineCX. The mountain is big, but im thrilled to climb it.</p>
+    <p>Right now I'm developing BRAIN. The cognitive system of an AI agent. It is my final proyect as an AI & Software Engineer Intern @ EngineCX. The mountain is big, but I'm thrilled to climb it.</p>
   </section>
 
 
@@ -90,14 +113,14 @@
     <p>Some of my favorite projects I have developed: </p>
     <ul>
         <li>BRAIN: AI microservice built from first principals. Hybrid paradigm of rule-based and ML. Build for a car insurance company.</li>
-        <li>AIE:(Artificial Intelligence for Ethics) AI system that analyzes papers, data and code. It determines if such files have bias or mitigation and how ethical it is.</li>
-        <li>Focus Timer: A timer built in elixir from lambda calculi princirpals to undestand FP.</li>
+        <li>AIE (Artificial Intelligence for Ethics): AI system that analyzes papers, data and code. It determines if such files have bias or mitigation and how ethical it is.</li>
+        <li>Focus Timer: A timer built in elixir from lambda calculi principals to undestand FP.</li>
     </ul>
   </section>
 
   <section id="research">
     <h2>🧪 Research</h2>
-    <p>Currently doing personal research about AI agent formalism and desicion theory.</p>
+    <p>Currently doing personal research about AI agent formalism and desicion theory. I'm diving heavily into the AIAMA textbook!</p>
   </section>
 
   <section id="papers">
