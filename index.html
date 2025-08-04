@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="disk.png">
   <title>Ana Paola Oviedo — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
     /* Define a more professional yet warm color palette */
     :root {
-      --primary-pink: #e788a8; /* Muted Rose Pink */
-      --light-pink: #fce9ef;  /* Very Light Pink */
-      --accent-pink: #c94b7b; /* Darker Pink for accents/hovers */
-      --background-light: #fdfdfd; /* Off-white for background */
-      --text-dark: #444444;    /* Soft Black/Dark Gray */
-      --border-light: #eeeeee; /* Light Gray for borders */
+      --primary-pink: #d978a0; /* Slightly deeper muted pink */
+      --light-pink: #fbe9ef;  /* Very Light Pink, almost white */
+      --accent-pink: #bd4f79; /* Deeper pink for strong accents/hovers */
+      --background-light: #fefefe; /* Near white for main background */
+      --text-dark: #3a3a3a;    /* Softer dark gray */
+      --border-light: #e8e8e8; /* Lighter gray for subtle borders */
       --border-accent: #f5d1de; /* Slightly darker pink for border hover */
     }
 
@@ -24,7 +24,7 @@
     @keyframes fadeInSlideUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(25px); /* Increased slide distance */
       }
       to {
         opacity: 1;
@@ -52,50 +52,81 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(-45deg, var(--background-light), #f8f0f4, var(--background-light)); /* Subtle gradient */
+      background: linear-gradient(-45deg, var(--background-light), #f8f0f4, var(--background-light));
       background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite; /* Slow, continuous shift */
+      animation: gradientShift 20s ease infinite; /* Slower, smoother shift */
       color: var(--text-dark);
-      line-height: 1.6;
+      line-height: 1.7; /* Increased for better readability */
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden; /* Prevent horizontal scroll from animations */
     }
 
     header {
       background: var(--primary-pink);
       color: white;
-      padding: 3rem 2rem;
+      padding: 4rem 2rem; /* More generous padding */
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      overflow: hidden; /* Ensures text animations don't overflow */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Slightly softer, wider shadow */
+      overflow: hidden;
+      position: relative; /* For potential future background elements */
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.8rem;
-      letter-spacing: 0.5px;
-      font-weight: 700;
+      font-size: 3.2rem; /* Larger, more impactful */
+      letter-spacing: 1px; /* Slightly more spaced out */
+      font-weight: 800; /* Extra bold */
       opacity: 0; /* Hidden initially for animation */
-      animation: fadeInSlideUp 0.8s ease-out forwards; /* Animation applies */
+      animation: fadeInSlideUp 0.9s ease-out forwards; /* Animation applies */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Subtle text shadow */
     }
 
     header p {
-      font-size: 1.1rem;
+      font-size: 1.25rem; /* Larger sub-heading */
       opacity: 0; /* Hidden initially for animation */
-      animation: fadeInSlideUp 0.8s ease-out forwards 0.3s; /* Delayed animation */
-      animation-delay: 0.3s; /* Delay for staggering */
-      opacity: 0; /* Ensures it starts invisible */
+      animation: fadeInSlideUp 0.9s ease-out forwards;
+      animation-delay: 0.4s; /* Increased delay */
+      margin-top: 0.8rem;
     }
+
+    /* New styles for contact links in header */
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem; /* Space between icons */
+      margin-top: 2rem; /* Space below the engineer text */
+      opacity: 0; /* Hidden initially for animation */
+      animation: fadeInSlideUp 0.9s ease-out forwards;
+      animation-delay: 0.6s; /* Delayed after header text */
+    }
+
+    .contact-links a {
+      color: white;
+      font-size: 1.5rem; /* Icon size */
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
+      display: inline-flex; /* To align text next to icon if added */
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-links a:hover {
+      color: var(--light-pink); /* Lighter pink on hover */
+      transform: translateY(-3px) scale(1.05); /* Lift and slight scale */
+      text-shadow: 0 0 10px rgba(255,255,255,0.7); /* Glow effect */
+    }
+
 
     nav {
       background: var(--light-pink);
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
-      padding: 1rem;
+      gap: 1.5rem; /* More space between buttons */
+      padding: 1.2rem; /* Slightly more padding */
       flex-wrap: wrap;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08); /* Slightly more prominent nav shadow */
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -105,66 +136,94 @@
     .nav-button {
       background-color: var(--primary-pink);
       color: white;
-      padding: 10px 22px;
+      padding: 12px 28px; /* Larger padding for buttons */
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 8px; /* Slightly more rounded */
       font-weight: 600;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border 0.3s ease;
-      border: 2px solid transparent; /* Added for hover effect */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+      border: 3px solid transparent; /* Thicker border for hover effect */
     }
 
     .nav-button:hover {
       background-color: var(--accent-pink);
-      transform: translateY(-3px) scale(1.02); /* More pronounced lift and slight scale */
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
-      border: 2px solid white; /* White border on hover */
+      transform: translateY(-4px) scale(1.03); /* More pronounced lift and slight scale */
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3); /* Stronger, more dramatic shadow on hover */
+      border-color: white; /* White border on hover */
     }
 
     .nav-button.active-nav {
-      background-color: var(--accent-pink); /* Highlight active button */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      background-color: var(--accent-pink);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
       transform: translateY(-2px);
-      border: 2px solid white; /* Active button also gets white border */
+      border-color: white;
     }
 
     main {
       flex: 1;
+      padding: 1.5rem 0; /* Add some padding around the main content area */
     }
 
     section {
-      padding: 2.5rem 3rem;
+      padding: 3rem 4rem; /* More generous internal padding */
       background: white;
-      margin: 1.5rem auto;
-      border-radius: 1rem;
+      margin: 2rem auto; /* More vertical margin between sections */
+      border-radius: 1.2rem; /* More pronounced rounded corners */
       width: 90%;
-      max-width: 850px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      max-width: 900px; /* Slightly wider max-width for content flow */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Deeper shadow for sections */
       border: 1px solid var(--border-light);
+      opacity: 0; /* Hidden initially for JS animation */
+      animation: fadeInScale 0.8s ease-out forwards; /* Added default animation */
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Longer transition */
     }
 
     section:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
-      border-color: var(--border-accent); /* Dynamic border change on hover */
+      transform: translateY(-7px); /* More pronounced lift on hover */
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18); /* Stronger shadow on hover */
+      border-color: var(--accent-pink); /* Stronger border accent on hover */
     }
 
     section h2 {
       margin-top: 0;
       color: var(--accent-pink);
-      font-size: 1.8rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 0.7rem;
-      margin-bottom: 1.2rem;
-      font-weight: 600;
+      font-size: 2rem; /* Slightly larger heading */
+      border-bottom: 2px solid var(--border-light); /* Thicker initial border */
+      padding-bottom: 0.8rem; /* More padding */
+      margin-bottom: 1.5rem;
+      font-weight: 700; /* Bolder headings */
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.7rem; /* More space for icons */
+      position: relative; /* For underline animation */
+      overflow: hidden; /* Hide overflow of animating border */
     }
+
     section h2 i {
         font-size: 1.1em; /* Adjust icon size in heading */
-        color: var(--primary-pink);
+        color: var(--primary-pink); /* Use primary pink for heading icons */
+        margin-right: 0.2rem; /* Small space after icon */
+    }
+
+    /* Animated Underline for h2 */
+    .section-h2-underline::after {
+        content: '';
+        position: absolute;
+        bottom: -2px; /* Place it just below the border-bottom */
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background-color: var(--accent-pink);
+        transition: width 0.6s ease-out; /* Smooth width transition */
+    }
+    .fade-in-section.is-visible .section-h2-underline::after {
+        width: 100%; /* Expands when section is visible */
+    }
+
+
+    section p {
+        font-size: 1.05rem; /* Slightly larger paragraphs */
+        margin-bottom: 1rem;
     }
 
     section ul {
@@ -174,12 +233,12 @@
     }
 
     section ul li {
-      padding: 0.6rem 0;
+      padding: 0.7rem 0; /* More padding */
       border-bottom: 1px dotted var(--border-light);
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, transform 0.2s ease; /* Added transform for list items */
       position: relative;
-      padding-left: 1.2rem;
-      font-size: 0.95rem; /* Make list items slightly smaller for skills */
+      padding-left: 1.5rem; /* More space for bullet */
+      font-size: 1rem; /* Standard font size */
     }
 
     section ul li:last-child {
@@ -188,22 +247,23 @@
 
     section ul li:hover {
       color: var(--accent-pink);
+      transform: translateX(5px); /* Slide effect for list items on hover */
     }
     section ul li::before {
       content: '•';
-      color: var(--accent-pink);
+      color: var(--primary-pink); /* Primary pink bullet */
       position: absolute;
       left: 0;
-      top: 0.4rem;
-      font-size: 1.2em;
+      top: 0.5rem;
+      font-size: 1.3em; /* Larger bullet */
       line-height: 1;
     }
 
-    /* Specific styles for Skills/Technologies section for better organization */
+    /* Skills/Technologies Grid */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* More columns for skills */
-      gap: 0.8rem; /* Tighter gap */
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Slightly wider for skills */
+      gap: 1rem; /* More space between skill tags */
       list-style: none;
       padding: 0;
       margin-top: 1rem;
@@ -211,31 +271,32 @@
 
     .skills-grid li {
       background-color: var(--light-pink);
-      padding: 0.6rem 1rem;
-      border-radius: 0.5rem;
+      padding: 0.8rem 1.2rem; /* Larger padding for tags */
+      border-radius: 0.7rem; /* Slightly more rounded */
       text-align: center;
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-size: 0.95rem; /* Slightly larger text */
+      font-weight: 600; /* Bolder text */
       color: var(--text-dark);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.07);
       border: 1px solid var(--border-light);
+      cursor: pointer; /* Indicate interactivity */
     }
 
     .skills-grid li:hover {
       background-color: var(--accent-pink);
       color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transform: translateY(-3px); /* More pronounced lift */
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
 
 
     footer {
       text-align: center;
-      padding: 1.2rem;
+      padding: 1.5rem; /* More footer padding */
       background: var(--primary-pink);
       color: white;
-      margin-top: 2.5rem;
+      margin-top: 3rem; /* More margin */
       font-size: 0.85rem;
       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
       flex-shrink: 0;
@@ -246,11 +307,11 @@
       scroll-behavior: smooth;
     }
 
-    /* Fade-in on scroll animation */
+    /* Fade-in on scroll animation (applied to sections) */
     .fade-in-section {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transform: translateY(25px); /* Matches header slide up */
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out; /* Slightly longer transition */
       will-change: opacity, transform;
     }
 
@@ -262,13 +323,20 @@
     /* Responsive adjustments */
     @media (max-width: 768px) {
       header {
-        padding: 2rem 1rem;
+        padding: 2.5rem 1rem;
       }
       header h1 {
         font-size: 2.2rem;
       }
       header p {
         font-size: 0.95rem;
+      }
+      .contact-links {
+          margin-top: 1.5rem;
+          gap: 1rem;
+      }
+      .contact-links a {
+          font-size: 1.2rem;
       }
       nav {
         flex-direction: column;
@@ -281,6 +349,7 @@
         margin: 0 auto;
         text-align: center;
         padding: 8px 15px;
+        border-radius: 6px; /* Reset for mobile */
       }
       section {
         padding: 1.5rem;
@@ -290,6 +359,10 @@
       section h2 {
         font-size: 1.5rem;
       }
+      section ul li {
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+      }
       .skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         gap: 0.6rem;
@@ -297,6 +370,7 @@
       .skills-grid li {
         padding: 0.5rem 0.8rem;
         font-size: 0.8rem;
+        border-radius: 0.5rem; /* Reset for mobile */
       }
       footer {
         padding: 1rem;
@@ -309,6 +383,16 @@
   <header>
     <h1>Ana Paola Oviedo</h1>
     <p>Computer Scientist · Dreamer · Engineer</p>
+
+    <div class="contact-links">
+      <a href="mailto:youremail@example.com" target="_blank" aria-label="Email Ana Paola">
+        <i class="fas fa-envelope"></i> </a>
+      <a href="https://github.com/yourgithubusername" target="_blank" aria-label="Ana Paola's GitHub Profile">
+        <i class="fab fa-github"></i> </a>
+      <a href="https://www.linkedin.com/in/yourlinkedinprofile" target="_blank" aria-label="Ana Paola's LinkedIn Profile">
+        <i class="fab fa-linkedin-in"></i> </a>
+      </div>
+
   </header>
 
   <nav>
@@ -316,21 +400,22 @@
     <a href="thoughts.html" class="nav-button">Thoughts</a>
     <a href="projects.html" class="nav-button">Projects</a>
     <a href="research.html" class="nav-button">Research & Self-Study</a>
-    <a href="#skills" class="nav-button">Skills</a> </nav>
+    <a href="#skills" class="nav-button">Skills</a>
+  </nav>
 
   <main>
     <section id="about" class="fade-in-section">
-      <h2><i class="fas fa-heart"></i> About Me</h2>
+      <h2 class="section-h2-underline"><i class="fas fa-user-circle"></i> About Me</h2>
       <p>Hi! I'm Ana Paola, a passionate computer scientist currently studying at Tec de Monterrey. I'm mostly passionate about theoretical CS, AI, cybersecurity and building things from first principles that actually make a difference. ✨</p>
     </section>
 
     <section id="thoughts" class="fade-in-section">
-      <h2><i class="fas fa-lightbulb"></i> Thoughts</h2>
+      <h2 class="section-h2-underline"><i class="fas fa-lightbulb"></i> Thoughts</h2>
       <p>Right now I'm developing BRAIN. The cognitive system of an AI agent. It is my final project as an AI & Software Engineer Intern @ EngineCX. The mountain is big, but I'm thrilled to climb it.</p>
     </section>
 
     <section id="projects" class="fade-in-section">
-      <h2><i class="fas fa-laptop-code"></i> Personal Projects</h2>
+      <h2 class="section-h2-underline"><i class="fas fa-laptop-code"></i> Personal Projects</h2>
       <p>Some of my favorite projects I have developed:</p>
       <ul>
         <li><strong>BRAIN:</strong> AI microservice built from first principles. Hybrid paradigm of rule-based and ML. Build for a car insurance company.</li>
@@ -340,12 +425,12 @@
     </section>
 
     <section id="research" class="fade-in-section">
-      <h2><i class="fas fa-flask"></i> Research</h2>
+      <h2 class="section-h2-underline"><i class="fas fa-flask"></i> Research & Self-Study</h2>
       <p>Currently doing personal research about AI agent formalism and decision theory. I'm diving heavily into the AIAMA textbook!</p>
     </section>
 
     <section id="skills" class="fade-in-section">
-      <h2><i class="fas fa-tools"></i> Skills & Technologies</h2>
+      <h2 class="section-h2-underline"><i class="fas fa-tools"></i> Skills & Technologies</h2>
       <p>My proficiency spans a range of programming languages, frameworks, and tools, honed through academic projects and self-study.</p>
       <ul class="skills-grid">
         <li>Python</li>
@@ -379,7 +464,6 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Intersection Observer for scroll animations
-      // Target all sections for fade-in
       const fadeElements = document.querySelectorAll('section');
 
       const observerOptions = {
@@ -409,38 +493,38 @@
       const updateActiveNav = () => {
         let currentActiveSectionId = null;
 
-        sections.forEach(section => {
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i];
           const rect = section.getBoundingClientRect();
-          // Adjust threshold if needed for better active state detection
           if (rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.3) {
             currentActiveSectionId = section.id;
+            break;
           }
-        });
+        }
+
+        if (!currentActiveSectionId && sections.length > 0) {
+            currentActiveSectionId = sections[0].id;
+        }
 
         navButtons.forEach(button => {
           button.classList.remove('active-nav');
           const href = button.getAttribute('href');
 
-          // Handle external links (About Me, Thoughts, Projects, Research)
-          if (href === 'aboutme.html' && window.location.pathname.includes('aboutme.html')) {
-             // This is technically for when aboutme.html is the current page,
-             // but on the index.html it just links out.
-             // We can assume if index is loaded, 'about' is the initial active.
-             if (!currentActiveSectionId && button.getAttribute('href').includes('about')) {
-                 button.classList.add('active-nav');
-             }
-          } else if (href.includes('#')) { // Internal links for sections on this page
+          if (href.includes('#')) {
             const targetId = href.split('#')[1];
             if (targetId === currentActiveSectionId) {
               button.classList.add('active-nav');
             }
+          } else {
+             // For external links like aboutme.html, projects.html, etc.
+             // Only apply 'active-nav' if currently on that exact page
+             const currentPagePath = window.location.pathname.split('/').pop();
+             const buttonHrefPath = href.split('/').pop();
+             if (currentPagePath === buttonHrefPath) {
+                 button.classList.add('active-nav');
+             }
           }
         });
-
-        // Fallback for when no specific section is highly visible (e.g., at very top)
-        if (!currentActiveSectionId && sections.length > 0 && sections[0].id === 'about') {
-            document.querySelector('.nav-button[href="#about"]').classList.add('active-nav');
-        }
       };
 
       // Initial check on load
@@ -449,11 +533,9 @@
       // Update on scroll
       window.addEventListener('scroll', updateActiveNav);
 
-      // Also update when nav button is clicked (for smoother immediate feedback)
       navButtons.forEach(button => {
-        if (button.getAttribute('href').startsWith('#')) { // Only for internal links
-          button.addEventListener('click', () => {
-            // Give a short delay to allow smooth scroll to complete
+        if (button.getAttribute('href').startsWith('#')) {
+          button.addEventListener('click', (e) => {
             setTimeout(updateActiveNav, 700);
           });
         }
