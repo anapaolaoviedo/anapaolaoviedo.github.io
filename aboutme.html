@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="disk.png"> <title>About Me — Ana Paola Oviedo</title>
+  <link rel="icon" type="image/png" href="disk.png">
+  <title>About Me — Ana Paola Oviedo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     /* Define a more professional yet warm color palette (consistent with index.html) */
     :root {
@@ -31,86 +33,93 @@
     header {
       background: var(--primary-pink);
       color: white;
-      padding: 3rem 2rem; /* Consistent padding */
+      padding: 3rem 2rem;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      /* For subtle parallax, uncomment if you add a background image */
+      /* background-attachment: fixed; */
+      /* background-position: center; */
+      /* background-size: cover; */
+      /* background-image: url('path/to/your/professional-header-image.jpg'); */
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.8rem; /* Consistent font size */
+      font-size: 2.8rem;
       font-weight: 700;
     }
 
     .container {
-      flex: 1; /* Allows container to grow and push footer down */
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem; /* Added general padding for container */
+      padding: 2rem 1rem;
     }
 
     .profile-pic {
-      width: 200px; /* Slightly smaller for refinement */
-      height: 200px; /* Ensure aspect ratio */
-      object-fit: cover; /* Important for circular images to not stretch */
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
       border-radius: 50%;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* Refined shadow */
-      margin-bottom: 2.5rem; /* Consistent spacing */
-      border: 4px solid var(--primary-pink); /* Subtle border matching theme */
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      margin-bottom: 2.5rem;
+      border: 4px solid var(--primary-pink);
     }
 
     .grid {
-      display: grid; /* Using CSS Grid for better control over layout */
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-      gap: 1.5rem; /* Consistent gap */
-      max-width: 1000px; /* Max width for grid container */
-      width: 90%; /* Ensure it's not too wide on large screens */
-      margin: 0 auto; /* Center the grid */
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      width: 90%;
+      margin: 0 auto;
     }
 
     .box {
       background: white;
       border-radius: 1rem;
-      padding: 2rem; /* Increased padding inside boxes */
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* Consistent shadow */
-      border: 1px solid var(--border-light); /* Subtle border */
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      border: 1px solid var(--border-light);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .box:hover {
-      transform: translateY(-5px); /* Lift on hover */
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* More pronounced shadow on hover */
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     h2 {
-      color: var(--accent-pink); /* Consistent heading color */
+      color: var(--accent-pink);
       margin-top: 0;
-      font-size: 1.6rem; /* Consistent heading size */
-      border-bottom: 1px solid var(--border-light); /* Consistent underline */
+      font-size: 1.6rem;
+      border-bottom: 1px solid var(--border-light);
       padding-bottom: 0.7rem;
       margin-bottom: 1rem;
       font-weight: 600;
     }
 
     p {
-      line-height: 1.7; /* Slightly increased line-height for readability */
-      margin-bottom: 1rem; /* Space between paragraphs */
+      line-height: 1.7;
+      margin-bottom: 1rem;
     }
     p:last-child {
-        margin-bottom: 0; /* No margin after last paragraph in a box */
+        margin-bottom: 0;
     }
 
     ul {
-      list-style: none; /* Remove default bullets */
+      list-style: none;
       padding: 0;
       margin-top: 0.5rem;
     }
 
     ul li {
       padding: 0.5rem 0;
-      border-bottom: 1px dotted var(--border-light); /* Consistent separator */
+      border-bottom: 1px dotted var(--border-light);
       transition: color 0.3s ease;
+      position: relative;
+      padding-left: 10px;
     }
     ul li:last-child {
       border-bottom: none;
@@ -118,19 +127,34 @@
     ul li:hover {
       color: var(--accent-pink);
     }
+    /* Optional: Subtle line on hover for list items */
+    ul li::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 5px; /* Adjust if needed */
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-pink);
+      transition: width 0.3s ease-out;
+    }
+
+    ul li:hover::after {
+      width: 100%;
+    }
 
     .back-home-button {
       background-color: var(--primary-pink);
       color: white;
       padding: 12px 24px;
       text-decoration: none;
-      border-radius: 8px; /* Consistent border-radius */
+      border-radius: 8px;
       font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Consistent shadow */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      display: inline-block; /* Allows padding and shadow to apply correctly */
-      margin-top: 3rem; /* Space from the grid above */
-      margin-bottom: 3rem; /* Space from the footer below */
+      display: inline-block;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
     }
 
     .back-home-button:hover {
@@ -149,6 +173,24 @@
       flex-shrink: 0;
     }
 
+    /* Smooth scrolling (though not as relevant on a short page) */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Fade-in on scroll animation */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       header {
@@ -158,14 +200,14 @@
         font-size: 2.2rem;
       }
       .profile-pic {
-        width: 150px; /* Smaller on mobile */
+        width: 150px;
         height: 150px;
         margin-bottom: 2rem;
       }
       .grid {
-        grid-template-columns: 1fr; /* Stack boxes on small screens */
+        grid-template-columns: 1fr;
         gap: 1rem;
-        width: 95%; /* Adjust width for small screens */
+        width: 95%;
       }
       .box {
         padding: 1.5rem;
@@ -188,34 +230,35 @@
 <body>
 
   <header>
-    <h1>About Me</h1> </header>
+    <h1>About Me</h1>
+  </header>
 
   <div class="container">
-    <img src="mypic.svg" alt="Ana Paola smiling" class="profile-pic">
+    <img src="mypic.svg" alt="Ana Paola smiling" class="profile-pic fade-in-section">
 
     <div class="grid">
-      <div class="box">
+      <div class="box fade-in-section">
         <h2>Hello! I'm Ana Paola ✨</h2>
         <p>I'm a computer science student at Tec de Monterrey, deeply passionate about theoretical CS, AI, and the intersection of technology and ethics. I believe in creating technology that empowers, protects, and uplifts humans. Human-centered technology is the way to go!</p>
       </div>
 
-      <div class="box">
+      <div class="box fade-in-section">
         <h2>What I'm focusing on 💡</h2>
         <p>My current focus is on AI development, theoretical machine learning, and building tools that combine science, ethics, and creativity.</p>
       </div>
 
-      <div class="box">
+      <div class="box fade-in-section">
         <h2>Beyond tech 🌸</h2>
         <p>Outside of tech, I'm in love with literature, philosophy books, and Michelangelo's art. I also enjoy journaling, gym workouts, and dreaming about how technology can shape the future for good.</p>
       </div>
 
-      <div class="box">
+      <div class="box fade-in-section">
         <h2>Fun facts 💫</h2>
         <p>My biggest strength? Discipline. My biggest dream? To leave a mark as a scientist and thinker, and make the world a little brighter (and pinker 💗).</p>
         <p>All my vision boards come true — magic? Or unstoppable determination? 😉</p>
       </div>
 
-      <div class="box">
+      <div class="box fade-in-section">
         <h2>Top favorite books 📚</h2>
         <ul>
           <li>Babel by R.F. Kuang</li>
@@ -233,7 +276,33 @@
   </div>
 
   <footer>
-    <p>Ana Paola Oviedo &copy; 2025</p> </footer>
+    <p>Ana Paola Oviedo &copy; 2025</p>
+  </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.profile-pic, .box');
+
+      const observerOptions = {
+        root: null, // relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the item is visible
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      }, observerOptions);
+
+      animatedElements.forEach(element => {
+        element.classList.add('fade-in-section'); // Add initial hidden state
+        observer.observe(element);
+      });
+    });
+  </script>
 </body>
 </html>

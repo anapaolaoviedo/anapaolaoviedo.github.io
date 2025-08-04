@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="disk.png">
+  <title>Projects — Ana Paola Oviedo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Consistent Color Palette */
+    :root {
+      --primary-pink: #e788a8; /* Muted Rose Pink */
+      --light-pink: #fce9ef;  /* Very Light Pink */
+      --accent-pink: #c94b7b; /* Darker Pink for accents/hovers */
+      --background-light: #fdfdfd; /* Off-white for background */
+      --text-dark: #444444;    /* Soft Black/Dark Gray */
+      --border-light: #eeeeee; /* Light Gray for borders */
+      --border-accent: #f5d1de; /* Slightly darker pink for border hover */
+
+      /* Project status colors */
+      --status-complete: #28a745; /* Green for complete */
+      --status-in-progress: #ffc107; /* Yellow for in progress */
+      --status-low-impact: #6c757d; /* Gray for lower impact */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--background-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--primary-pink);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      border: 1px solid var(--border-light);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-color: var(--border-accent); /* Dynamic border change on hover */
+    }
+
+    .project-card h2 {
+      color: var(--accent-pink);
+      margin-top: 0;
+      font-size: 1.6rem;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      display: flex; /* For aligning icon in heading */
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .project-card h2 i {
+        font-size: 1.2em; /* Adjust icon size in heading */
+        color: var(--primary-pink);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .project-meta span {
+      background-color: var(--light-pink);
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.5rem;
+      color: var(--text-dark);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-meta .status.complete { background-color: var(--status-complete); color: white; }
+    .project-meta .status.in-progress { background-color: var(--status-in-progress); color: var(--text-dark); }
+    .project-meta .impact.high { background-color: var(--accent-pink); color: white; }
+    .project-meta .impact.very-high { background-color: var(--accent-pink); color: white; }
+    .project-meta .impact.medium-high { background-color: var(--primary-pink); color: white; }
+    .project-meta .impact.medium { background-color: var(--primary-pink); color: white; }
+    .project-meta .impact.low-medium { background-color: var(--status-low-impact); color: white; }
+    .project-meta .impact.potentially-high { background-color: var(--status-in-progress); color: var(--text-dark); }
+
+
+    .project-card p {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+
+    .project-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem; /* More space before the GitHub link */
+    }
+
+    .project-card ul li {
+      padding: 0.5rem 0; /* Adjusted padding */
+      border-bottom: 1px dotted var(--border-light);
+      position: relative;
+      padding-left: 1.2rem;
+    }
+    .project-card ul li:last-child {
+      border-bottom: none;
+    }
+    .project-card ul li::before {
+      content: '•';
+      color: var(--accent-pink);
+      position: absolute;
+      left: 0;
+      top: 0.4rem; /* Adjusted for better alignment */
+      font-size: 1.2em;
+      line-height: 1;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #333;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .github-link:hover {
+      background-color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .back-home-button {
+      background-color: var(--primary-pink);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .back-home-button:hover {
+      background-color: var(--accent-pink);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem;
+      background: var(--primary-pink);
+      color: white;
+      font-size: 0.85rem;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
+    }
+
+    /* Fade-in on scroll animation */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        padding: 2.5rem 1rem;
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        width: 95%;
+      }
+      .project-card {
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+      }
+      .project-card h2 {
+        font-size: 1.4rem;
+      }
+      .project-meta span {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
+      }
+      .github-link {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+      }
+      .back-home-button {
+        padding: 10px 20px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+      footer {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Projects</h1>
+  </header>
+
+  <div class="container">
+    <div class="projects-grid">
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-brain"></i> BRAIN – AI Agent Microservice</h2>
+        <div class="project-meta">
+          <span class="status complete">✅ Complete</span>
+          <span>Type: AI / Backend / Microservices</span>
+          <span class="impact very-high">Impact: Very High</span>
+        </div>
+        <ul>
+          <li>Spearheaded the development** of an AI microservice during an internship at EngineCX.</li>
+          <li>Automated car insurance workflows** via WhatsApp integration, enhancing customer engagement.</li>
+          <li>Engineered a comprehensive pipeline** utilizing NLP, memory management, decision logic, and business tools (spaCy-LLM, Redis, PostgreSQL, FastAPI).</li>
+          <li>Achieved a 95% reduction in lead processing time**, demonstrating significant enterprise-level operational impact.</li>
+        </ul>
+        <a href="https://github.com/AnaPaolaOviedo/BRAIN_REPO_LINK" target="_blank" class="github-link">
+          <i class="fab fa-github"></i> View on GitHub
+        </a>
+      </div>
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-book"></i> LexiVault – Personal Knowledge Engine</h2>
+        <div class="project-meta">
+          <span class="status complete">✅ Complete MVP</span>
+          <span>Type: SWE / Backend API</span>
+          <span class="impact very-high">Impact: Very High</span>
+        </div>
+        <ul>
+          <li>Designed and implemented a robust backend API** showcasing strong software engineering practices.</li>
+          <li>Demonstrated proficiency** in FastAPI, Pydantic, OpenAPI, and Pytest for validation and testing.</li>
+          <li>Developed a versatile system** that bridges structured thought with engineering clarity, adaptable for various knowledge management domains.</li>
+          <li>Built a reusable foundation** for productivity tools, knowledge bases, and personal tooling.</li>
+        </ul>
+        <a href="https://github.com/AnaPaolaOviedo/LEXIVAULT_REPO_LINK" target="_blank" class="github-link">
+          <i class="fab fa-github"></i> View on GitHub
+        </a>
+      </div>
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-mobile-alt"></i> Vibely – iOS App</h2>
+        <div class="project-meta">
+          <span class="status in-progress">🛠️ In progress</span>
+          <span>Type: Mobile App / UI Engineering</span>
+          <span class="impact medium-high">Impact: Medium-High</span>
+        </div>
+        <ul>
+          <li>Developing a mobile application** using Swift and SwiftUI, employing the MVVM architectural pattern.</li>
+          <li>Focused on creating a compelling user experience** with a contemporary, Gen Z-inspired design and emotional media integration.</li>
+          <li>Showcases expertise in frontend and mobile development**, highlighting creativity, brand sensibility, and modern iOS 17 design principles.</li>
+          <li>Provides a strong contrast** to backend work, demonstrating broad technical versatility.</li>
+        </ul>
+        <a href="https://github.com/AnaPaolaOviedo/VIBELY_REPO_LINK" target="_blank" class="github-link">
+          <i class="fab fa-github"></i> View on GitHub
+        </a>
+      </div>
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-shield-alt"></i> AIE – AI Ethical Analyzer</h2>
+        <div class="project-meta">
+          <span class="status complete">✅ Complete</span>
+          <span>Type: AI Ethics / Static Analysis Tool</span>
+          <span class="impact medium">Impact: Medium</span>
+        </div>
+        <ul>
+          <li>Developed an AI system** utilizing NLP and static code analysis to identify ethical risks (e.g., bias, opacity) in AI models.</li>
+          <li>Capable of analyzing both model code and associated documentation** (PyTorch, scikit-learn, TensorFlow).</li>
+          <li>Represents a strong niche project** emphasizing commitment to ethical AI principles and responsible technology development.</li>
+          <li>Valuable for academic or research-oriented roles** focusing on AI governance and fairness.</li>
+        </ul>
+        <a href="https://github.com/AnaPaolaOviedo/AIE_REPO_LINK" target="_blank" class="github-link">
+          <i class="fab fa-github"></i> View on GitHub
+        </a>
+      </div>
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-video"></i> Streaming Service App (C++)</h2>
+        <div class="project-meta">
+          <span class="status complete">✅ Complete</span>
+          <span>Type: OOP / CS Fundamentals</span>
+          <span class="impact medium">Impact: Medium</span>
+        </div>
+        <ul>
+          <li>Implemented a streaming service application** demonstrating strong command of Object-Oriented Programming (OOP) principles.</li>
+          <li>Showcased practical application** of design patterns, polymorphism, inheritance, and modularity in C++.</li>
+          <li>Highly relevant for Software Engineering interviews** and foundational system design discussions.</li>
+          <li>Demonstrates core Computer Science fundamentals** and robust class design.</li>
+        </ul>
+      </div>
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-sort-amount-down-alt"></i> Log Sorting Tool (C++)</h2>
+        <div class="project-meta">
+          <span class="status complete">✅ Complete</span>
+          <span>Type: Algorithms / Data Structures</span>
+          <span class="impact low-medium">Impact: Low-Medium</span>
+        </div>
+        <ul>
+          <li>Developed a tool to process and sort log files**, highlighting advanced linked list manipulation.</li>
+          <li>Utilized the QuickSort algorithm** for efficient data organization and implemented robust file I/O operations.</li>
+          <li>Demonstrates fluency in Data Structures and Algorithms (DSA)** through a practical application.</li>
+          <li>Showcases the ability to implement foundational algorithms** effectively in C++.</li>
+        </ul>
+      </div>
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-hospital"></i> Hospital Farallon – Patient Data System</h2>
+        <div class="project-meta">
+          <span class="status complete">✅ Complete</span>
+          <span>Type: Data Science / SQL</span>
+          <span class="impact medium">Impact: Medium</span>
+        </div>
+        <ul>
+          <li>Gained valuable internship experience** working with real hospital patient data.</li>
+          <li>Applied SQL and Python for comprehensive data organization** and in-depth cohort analysis.</li>
+          <li>Demonstrates practical skills** in data science and database management within a healthcare context.</li>
+          <li>Reinforces resume with real-world application** of data handling and analytical techniques.</li>
+        </ul>
+      </div>
+
+      <div class="project-card fade-in-section">
+        <h2><i class="fas fa-lightbulb"></i> Cognitio – Foundational AI System</h2>
+        <div class="project-meta">
+          <span class="status in-progress">🛠️ In progress</span>
+          <span>Type: Theoretical AI / Philosophical</span>
+          <span class="impact potentially-high">Impact: Potentially High in Future</span>
+        </div>
+        <ul>
+          <li>Represents a forward-thinking vision** for AI, grounded in strong ethical and philosophical foundations.</li>
+          <li>Currently in the theoretical and conceptual development phase**, prior to full-scale implementation.</li>
+          <li>Highlights deep interest in the future of AI** and its responsible evolution.</li>
+          <li>Suitable for academic discussions** or demonstrating long-term research aspirations until a more mature prototype is available.</li>
+        </ul>
+        <a href="https://github.com/AnaPaolaOviedo/COGNITIO_REPO_LINK" target="_blank" class="github-link">
+          <i class="fab fa-github"></i> View on GitHub
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="https://anapaolaoviedo.github.io/" class="back-home-button">
+      ← Back to Home
+    </a>
+  </div>
+
+  <footer>
+    <p>Ana Paola Oviedo &copy; 2025</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectCards = document.querySelectorAll('.project-card');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      projectCards.forEach(card => {
+        card.classList.add('fade-in-section');
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>

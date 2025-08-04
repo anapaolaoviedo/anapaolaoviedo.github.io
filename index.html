@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" type="image/png" href="disk.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="disk.png">
   <title>Ana Paola Oviedo — Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     /* Define a more professional yet warm color palette */
     :root {
@@ -20,106 +22,119 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: var(--background-light); /* Softer, almost white background */
-      color: var(--text-dark); /* Softer text color */
+      background: var(--background-light);
+      color: var(--text-dark);
       line-height: 1.6;
-      display: flex; /* Use flexbox for body to ensure footer stays at bottom if content is short */
+      display: flex;
       flex-direction: column;
-      min-height: 100vh; /* Ensure body takes at least full viewport height */
+      min-height: 100vh;
     }
 
     header {
-      background: var(--primary-pink); /* Muted primary pink */
+      background: var(--primary-pink);
       color: white;
       padding: 3rem 2rem;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow for header */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      /* For subtle parallax, uncomment if you add a background image */
+      /* background-attachment: fixed; */
+      /* background-position: center; */
+      /* background-size: cover; */
+      /* background-image: url('path/to/your/professional-header-image.jpg'); */
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.8rem; /* Slightly adjusted size */
-      letter-spacing: 0.5px; /* Slightly tighter letter spacing for professionalism */
-      font-weight: 700; /* Make the main title bolder */
+      font-size: 2.8rem;
+      letter-spacing: 0.5px;
+      font-weight: 700;
     }
 
     header p {
-      font-size: 1.1rem; /* Slightly smaller subheading */
-      opacity: 0.95; /* Keep it clear */
-      font-weight: 400; /* Ensure this is not too bold */
+      font-size: 1.1rem;
+      opacity: 0.95;
+      font-weight: 400;
     }
 
     nav {
-      background: var(--light-pink); /* Very light pink for nav bar */
+      background: var(--light-pink);
       display: flex;
       justify-content: center;
-      gap: 1.2rem; /* Slightly reduced gap for a tighter look */
+      gap: 1.2rem;
       padding: 1rem;
       flex-wrap: wrap;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      position: sticky; /* Make navigation sticky */
+      position: sticky;
       top: 0;
-      z-index: 1000; /* Ensure it stays above other content */
+      z-index: 1000;
     }
 
     .nav-button {
       background-color: var(--primary-pink);
       color: white;
-      padding: 10px 22px; /* Slightly reduced padding for a less chunky look */
+      padding: 10px 22px;
       text-decoration: none;
-      border-radius: 6px; /* Slightly less rounded corners */
+      border-radius: 6px;
       font-weight: 600;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* Softer button shadow */
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     }
 
     .nav-button:hover {
-      background-color: var(--accent-pink); /* Darker pink on hover */
-      transform: translateY(-2px); /* Subtle lift */
+      background-color: var(--accent-pink);
+      transform: translateY(-2px);
       box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
     }
 
+    .nav-button.active-nav {
+      background-color: var(--accent-pink); /* Highlight active button */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
     main {
-      flex: 1; /* Allow main content to grow and push footer down */
+      flex: 1;
     }
 
     section {
-      padding: 2.5rem 3rem; /* Adjusted padding */
+      padding: 2.5rem 3rem;
       background: white;
-      margin: 1.5rem auto; /* Slightly less margin between sections */
-      border-radius: 1rem; /* Consistent, slightly less rounded corners */
+      margin: 1.5rem auto;
+      border-radius: 1rem;
       width: 90%;
-      max-width: 850px; /* Adjusted max-width for better content flow */
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); /* Softer, but still present shadow */
+      max-width: 850px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid var(--border-light); /* Subtle border for definition */
+      border: 1px solid var(--border-light);
     }
 
     section:hover {
-      transform: translateY(-3px); /* Subtle lift on hover */
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12); /* Slightly more pronounced shadow on hover */
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
     }
 
     section h2 {
       margin-top: 0;
-      color: var(--accent-pink); /* Use the darker pink for headings */
-      font-size: 1.8rem; /* Slightly smaller heading for formality */
-      border-bottom: 1px solid var(--border-light); /* Lighter, more subtle underline */
+      color: var(--accent-pink);
+      font-size: 1.8rem;
+      border-bottom: 1px solid var(--border-light);
       padding-bottom: 0.7rem;
       margin-bottom: 1.2rem;
-      font-weight: 600; /* Make section titles bold */
+      font-weight: 600;
     }
 
     section ul {
       list-style: none;
       padding: 0;
-      margin-top: 1rem; /* Space from paragraph above */
+      margin-top: 1rem;
     }
 
     section ul li {
-      padding: 0.6rem 0; /* Slightly more padding for list items */
-      border-bottom: 1px dotted var(--border-light); /* Lighter separator */
+      padding: 0.6rem 0;
+      border-bottom: 1px dotted var(--border-light);
       transition: color 0.3s ease;
+      position: relative; /* Needed for the ::after pseudo-element */
+      padding-left: 10px; /* Give space for potential icon/underline */
     }
 
     section ul li:last-child {
@@ -127,23 +142,51 @@
     }
 
     section ul li:hover {
-      color: var(--accent-pink); /* Highlight on hover */
+      color: var(--accent-pink);
+    }
+    /* Optional: Subtle line on hover for list items */
+    section ul li::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 5px; /* Adjust if needed */
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-pink);
+      transition: width 0.3s ease-out;
+    }
+
+    section ul li:hover::after {
+      width: 100%;
     }
 
     footer {
       text-align: center;
-      padding: 1.2rem; /* Slightly less padding */
+      padding: 1.2rem;
       background: var(--primary-pink);
       color: white;
-      margin-top: 2.5rem; /* Slightly less margin */
-      font-size: 0.85rem; /* Slightly smaller font for footer */
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-      flex-shrink: 0; /* Prevent footer from shrinking */
+      flex-shrink: 0;
     }
 
     /* Smooth scrolling for anchor links */
     html {
       scroll-behavior: smooth;
+    }
+
+    /* Fade-in on scroll animation */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Responsive adjustments */
@@ -163,9 +206,9 @@
         padding: 0.8rem;
       }
       .nav-button {
-        width: 90%; /* Make buttons wider on small screens */
-        max-width: 300px; /* Limit width even if flex-direction column */
-        margin: 0 auto; /* Center buttons */
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto;
         text-align: center;
         padding: 8px 15px;
       }
@@ -195,20 +238,21 @@
     <a href="#thoughts" class="nav-button">Thoughts</a>
     <a href="#projects" class="nav-button">Projects</a>
     <a href="#research" class="nav-button">Research</a>
-    
+    <a href="#papers" class="nav-button">Papers</a>
   </nav>
 
   <main>
-    <section id="about">
-      <h2>About Me</h2> <p>Hi! I'm Ana Paola, a passionate computer scientist currently studying at Tec de Monterrey. I'm mostly passionate about theoretical CS, AI, cybersecurity and building things from first principles that actually make a difference. ✨</p>
-      </section>
+    <section id="about" class="fade-in-section">
+      <h2>About Me</h2>
+      <p>Hi! I'm Ana Paola, a passionate computer scientist currently studying at Tec de Monterrey. I'm mostly passionate about theoretical CS, AI, cybersecurity and building things from first principles that actually make a difference. ✨</p>
+    </section>
 
-    <section id="thoughts">
+    <section id="thoughts" class="fade-in-section">
       <h2>Thoughts</h2>
       <p>Right now I'm developing BRAIN. The cognitive system of an AI agent. It is my final project as an AI & Software Engineer Intern @ EngineCX. The mountain is big, but I'm thrilled to climb it.</p>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="fade-in-section">
       <h2>Personal Projects</h2>
       <p>Some of my favorite projects I have developed:</p>
       <ul>
@@ -218,21 +262,89 @@
       </ul>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <p>First formal and theoretical paper coming soon!</p>
-    </section>
-
-    <section id="research">
+    <section id="research" class="fade-in-section">
       <h2>Research</h2>
       <p>Currently doing personal research about AI agent formalism and decision theory. I'm diving heavily into the AIAMA textbook!</p>
     </section>
 
-    
+    <section id="papers" class="fade-in-section">
+      <h2>Papers</h2>
+      <p>First formal and theoretical paper coming soon!</p>
+    </section>
   </main>
 
   <footer>
-    <p>Ana Paola Oviedo &copy; 2025</p> </footer>
+    <p>Ana Paola Oviedo &copy; 2025</p>
+  </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Intersection Observer for scroll animations
+      const fadeSections = document.querySelectorAll('section'); // Only sections for index.html
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      fadeSections.forEach(section => {
+        section.classList.add('fade-in-section');
+        observer.observe(section);
+      });
+
+      // Active navigation highlighting
+      const navButtons = document.querySelectorAll('.nav-button');
+      const sections = document.querySelectorAll('section');
+
+      const updateActiveNav = () => {
+        let currentActive = 'about'; // Default to 'about' if nothing else is in view
+
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          // Check if the top of the section is within the top half of the viewport
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            currentActive = section.id;
+          }
+        });
+
+        navButtons.forEach(button => {
+          button.classList.remove('active-nav');
+          const href = button.getAttribute('href');
+          if (href.includes(currentActive) && href.includes('#')) { // Ensure it's an internal link
+            button.classList.add('active-nav');
+          } else if (href === 'aboutme.html' && currentActive === 'about' && !window.location.hash) {
+            // Special case for 'About Me' link if it's external and no hash is present
+            // (Only for index.html, aboutme.html will handle its own active state)
+          }
+        });
+      };
+
+      // Initial check on load
+      updateActiveNav();
+
+      // Update on scroll
+      window.addEventListener('scroll', updateActiveNav);
+
+      // Also update when nav button is clicked (for smoother immediate feedback)
+      navButtons.forEach(button => {
+        if (button.getAttribute('href').startsWith('#')) { // Only for internal links
+          button.addEventListener('click', () => {
+            // Give a short delay to allow smooth scroll to complete
+            setTimeout(updateActiveNav, 700);
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
