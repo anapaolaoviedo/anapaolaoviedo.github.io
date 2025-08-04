@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="disk.png">
+  <title>Thoughts — Ana Paola Oviedo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Consistent Color Palette */
+    :root {
+      --primary-pink: #e788a8; /* Muted Rose Pink */
+      --light-pink: #fce9ef;  /* Very Light Pink */
+      --accent-pink: #c94b7b; /* Darker Pink for accents/hovers */
+      --background-light: #fdfdfd; /* Off-white for background */
+      --text-dark: #444444;    /* Soft Black/Dark Gray */
+      --border-light: #eeeeee; /* Light Gray for borders */
+      --border-accent: #f5d1de; /* Slightly darker pink for border hover */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--background-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--primary-pink);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .thoughts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted minmax for thought cards */
+      gap: 2rem; /* Space between cards */
+      max-width: 1000px; /* Max width for the grid */
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .thought-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      border: 1px solid var(--border-light);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .thought-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-color: var(--border-accent);
+    }
+
+    .thought-card h2 {
+      color: var(--accent-pink);
+      margin-top: 0;
+      font-size: 1.5rem; /* Slightly smaller for article titles */
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .thought-card p {
+      flex-grow: 1; /* Allows content to push link to bottom */
+      margin-bottom: 1.5rem; /* Space before the link */
+    }
+
+    .read-more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-pink);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto; /* Pushes the link to the bottom of the card */
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .read-more-link:hover {
+      color: var(--accent-pink);
+      transform: translateX(5px); /* Subtle slide effect on hover */
+    }
+    .read-more-link i {
+        font-size: 0.9em; /* Adjust icon size */
+    }
+
+    .back-home-button {
+      background-color: var(--primary-pink);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .back-home-button:hover {
+      background-color: var(--accent-pink);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem;
+      background: var(--primary-pink);
+      color: white;
+      font-size: 0.85rem;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
+    }
+
+    /* Fade-in on scroll animation */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        padding: 2.5rem 1rem;
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .thoughts-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        width: 95%;
+      }
+      .thought-card {
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+      }
+      .thought-card h2 {
+        font-size: 1.3rem;
+      }
+      .read-more-link {
+        font-size: 0.9rem;
+      }
+      .back-home-button {
+        padding: 10px 20px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+      footer {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Thoughts</h1>
+  </header>
+
+  <div class="container">
+    <div class="thoughts-grid">
+
+      <div class="thought-card fade-in-section">
+        <h2>The Ethical Imperative in AI Development</h2>
+        <p>Exploring the critical need for integrating ethical frameworks and bias mitigation strategies from the earliest stages of AI system design. Discusses challenges and frameworks for responsible AI.</p>
+        <a href="thoughts/thought1.html" class="read-more-link">
+          Read More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="thought-card fade-in-section">
+        <h2>Functional Programming: Beyond the Buzzword</h2>
+        <p>A deep dive into the practical benefits and underlying principles of functional programming, drawing parallels from lambda calculus to modern Elixir applications.</p>
+        <a href="thoughts/thought2.html" class="read-more-link">
+          Read More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="thought-card fade-in-section">
+        <h2>The Architecture of Agency: Building Intelligent Systems</h2>
+        <p>An examination of formalisms and decision theories fundamental to designing autonomous AI agents, drawing insights from foundational AI literature.</p>
+        <a href="thoughts/thought3.html" class="read-more-link">
+          Read More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="thought-card fade-in-section">
+        <h2>Cybersecurity in an AI-Driven World: New Vulnerabilities</h2>
+        <p>Analyzing emerging cybersecurity threats and attack vectors introduced by the proliferation of AI and machine learning systems. Proposes proactive defense strategies.</p>
+        <a href="thoughts/thought4.html" class="read-more-link">
+          Read More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="thought-card fade-in-section">
+        <h2>Developing BRAIN: Insights from an AI Agent Intern</h2>
+        <p>Right now I'm developing BRAIN, the cognitive system of an AI agent. It is my final project as an AI & Software Engineer Intern @ EngineCX. The mountain is big, but I'm thrilled to climb it.</p>
+        </div>
+      
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="https://anapaolaoviedo.github.io/" class="back-home-button">
+      ← Back to Home
+    </a>
+  </div>
+
+  <footer>
+    <p>Ana Paola Oviedo &copy; 2025</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const thoughtCards = document.querySelectorAll('.thought-card');
+
+      const observerOptions = {
+        root: null, // relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the item is visible
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      }, observerOptions);
+
+      thoughtCards.forEach(card => {
+        card.classList.add('fade-in-section'); // Add initial hidden state
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>
