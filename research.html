@@ -5,211 +5,416 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="disk.png">
   <title>Research & Self-Study — Ana Paola Oviedo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
-    /* Consistent Color Palette */
     :root {
-      --primary-pink: #e788a8; /* Muted Rose Pink */
-      --light-pink: #fce9ef;  /* Very Light Pink */
-      --accent-pink: #c94b7b; /* Darker Pink for accents/hovers */
-      --background-light: #fdfdfd; /* Off-white for background */
-      --text-dark: #444444;    /* Soft Black/Dark Gray */
-      --border-light: #eeeeee; /* Light Gray for borders */
-      --border-accent: #f5d1de; /* Slightly darker pink for border hover */
+      --primary: #ff6b9d;
+      --secondary: #c44569;
+      --accent: #ffc6d9;
+      --dark: #1a1a2e;
+      --darker: #0f0f1e;
+      --light: #f8f9fa;
+      --purple: #a29bfe;
+      --blue: #74b9ff;
+      --green: #55efc4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--background-light);
-      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      overflow-x: hidden;
       line-height: 1.6;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
+      position: relative;
     }
 
-    header {
-      background: var(--primary-pink);
+    /* Animated constellation background */
+    .constellation {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: rgba(15, 15, 30, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-button {
+      padding: 0.7rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-button:hover {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      padding: 3rem 2rem;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+    }
+
+    .nav-button.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Header */
+    header {
+      padding: 10rem 2rem 5rem;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 50%, var(--accent) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: shimmer 3s ease-in-out infinite;
     }
 
+    header p {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Container */
     .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1rem;
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .research-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1000px; /* Consistent with thoughts/projects */
-      width: 90%;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
     }
 
-    .research-category-card {
-      background: white;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      border: 1px solid var(--border-light);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .research-category-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      border-color: var(--border-accent);
-    }
-
-    .research-category-card h2 {
-      color: var(--accent-pink);
-      margin-top: 0;
-      font-size: 1.6rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 0.7rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .research-category-card h2 i {
-        font-size: 1.2em;
-        color: var(--primary-pink);
-    }
-
-    .research-category-card ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 0.5rem;
-      flex-grow: 1; /* Ensures lists push content to bottom for alignment */
-    }
-
-    .research-category-card ul li {
-      padding: 0.5rem 0;
-      border-bottom: 1px dotted var(--border-light);
+    /* Research Cards */
+    .research-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-radius: 25px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
       position: relative;
-      padding-left: 1.2rem;
-      font-size: 0.95rem;
-    }
-    .research-category-card ul li:last-child {
-      border-bottom: none;
-    }
-    .research-category-card ul li::before {
-      content: '•';
-      color: var(--accent-pink);
-      position: absolute;
-      left: 0;
-      top: 0.4rem;
-      font-size: 1.2em;
-      line-height: 1;
-    }
-
-    .back-home-button {
-      background-color: var(--primary-pink);
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      display: inline-block;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .back-home-button:hover {
-      background-color: var(--accent-pink);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.2rem;
-      background: var(--primary-pink);
-      color: white;
-      font-size: 0.85rem;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-      flex-shrink: 0;
-    }
-
-    /* Fade-in on scroll animation */
-    .fade-in-section {
+      overflow: hidden;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      will-change: opacity, transform;
+      transform: translateY(30px);
     }
 
-    .fade-in-section.is-visible {
+    .research-card.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Responsive adjustments */
+    .research-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--purple), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .research-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .research-card:hover {
+      transform: translateY(-12px);
+      background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(162, 155, 254, 0.05) 100%);
+      border-color: var(--primary);
+      box-shadow: 0 25px 60px rgba(255, 107, 157, 0.25);
+    }
+
+    .research-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--purple));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .research-card:hover .research-icon {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .research-card h2 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .research-card > p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .research-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .research-card ul li {
+      padding: 0.8rem 0;
+      color: rgba(255, 255, 255, 0.8);
+      position: relative;
+      padding-left: 1.8rem;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .research-card ul li:last-child {
+      border-bottom: none;
+    }
+
+    .research-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .research-card ul li:hover {
+      padding-left: 2.3rem;
+      color: var(--accent);
+    }
+
+    .research-card ul li:hover::before {
+      transform: translateX(5px);
+    }
+
+    .research-card strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Featured cards */
+    .research-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(162, 155, 254, 0.15) 0%, rgba(255, 107, 157, 0.1) 100%);
+    }
+
+    .research-card.featured .research-icon {
+      background: linear-gradient(135deg, var(--purple), var(--primary));
+    }
+
+    /* Back Button */
+    .back-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .back-home-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--purple));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-home-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .back-home-button:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .back-home-button:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(255, 107, 157, 0.6);
+    }
+
+    .back-home-button i,
+    .back-home-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--darker);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .research-card.featured {
+        grid-column: span 1;
+      }
+    }
+
     @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+        gap: 0.5rem;
+      }
+
+      .nav-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+      }
+
       header {
-        padding: 2.5rem 1rem;
+        padding: 7rem 1.5rem 4rem;
       }
+
       header h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
+
       .research-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        width: 95%;
+        gap: 2rem;
       }
-      .research-category-card {
-        padding: 1.5rem;
-        border-radius: 0.8rem;
-      }
-      .research-category-card h2 {
-        font-size: 1.4rem;
-      }
-      .back-home-button {
-        padding: 10px 20px;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-      }
-      footer {
-        padding: 1rem;
+
+      .research-card {
+        padding: 2rem;
       }
     }
   </style>
 </head>
 <body>
 
+  <div class="constellation" id="constellation"></div>
+
+  <nav>
+    <a href="index.html" class="nav-button">Home</a>
+    <a href="aboutme.html" class="nav-button">About Me</a>
+    <a href="thoughts.html" class="nav-button">Thoughts</a>
+    <a href="projects.html" class="nav-button">Projects</a>
+    <a href="research.html" class="nav-button active">Research & Self-Study</a>
+  </nav>
+
   <header>
     <h1>Research & Self-Study</h1>
+    <p>Deep explorations in theoretical CS, AI, logic, and the foundations of intelligent systems</p>
   </header>
 
   <div class="container">
     <div class="research-grid">
 
-      <div class="research-category-card fade-in-section">
-        <h2><i class="fas fa-microchip"></i> Theoretical Computer Science</h2>
+      <div class="research-card">
+        <div class="research-icon">🔢</div>
+        <h2>Theoretical Computer Science</h2>
         <p>My foundational self-study in TCS aims to deeply understand the limits and capabilities of computation, influencing robust algorithm design and complex system analysis.</p>
         <ul>
           <li><strong>Discrete Mathematics:</strong> Exploring combinatorics, graph theory, and number theory for algorithmic problem-solving.</li>
@@ -219,8 +424,9 @@
         </ul>
       </div>
 
-      <div class="research-category-card fade-in-section">
-        <h2><i class="fas fa-brain"></i> AI & Cognitive Systems</h2>
+      <div class="research-card">
+        <div class="research-icon">🧠</div>
+        <h2>AI & Cognitive Systems</h2>
         <p>A strong focus on the theoretical underpinnings of artificial intelligence, including agent design, decision theory, and the philosophical implications of machine cognition.</p>
         <ul>
           <li><strong>Agent Theory:</strong> In-depth study of rational agents, environments, and their interaction models.</li>
@@ -230,8 +436,9 @@
         </ul>
       </div>
 
-      <div class="research-category-card fade-in-section">
-        <h2><i class="fas fa-infinity"></i> Logic & Philosophy of Computing</h2>
+      <div class="research-card">
+        <div class="research-icon">∞</div>
+        <h2>Logic & Philosophy of Computing</h2>
         <p>Dedicated exploration of raw logic, its application in computing, and the broader philosophical questions arising from advanced technology and intelligence.</p>
         <ul>
           <li><strong>Formal Logic:</strong> Delving into propositional, predicate, and modal logics, including proof theory and model theory.</li>
@@ -241,55 +448,69 @@
         </ul>
       </div>
 
-      <div class="research-category-card fade-in-section">
-        <h2><i class="fas fa-lightbulb"></i> Current Research Focus</h2>
+      <div class="research-card featured">
+        <div class="research-icon">🎯</div>
+        <h2>Current Research Focus</h2>
         <p>My current primary research centers on <strong>AI agent formalism and advanced decision theory</strong>. I am rigorously studying the theoretical models of intelligent agents and the computational aspects of rational choice. This involves deep dives into optimizing agent behavior in complex, dynamic environments, with a strong emphasis on foundational mathematics.</p>
         <p>I am particularly engaged with chapters on utility theory, game theory, and multi-agent systems within the <strong>AIMA textbook</strong>, supplemented by academic papers on reinforcement learning theory and formal verification of agent behavior. My goal is to bridge theoretical robustness with practical, ethical AI design.</p>
       </div>
 
-      <div class="research-category-card fade-in-section">
-        <h2><i class="fas fa-brain"></i> BRAIN: A first principles blueprint for cognitive agents.</h2>
-        <p>During my internship at Engine CX I built <strong>BRAIN</strong>. I decided to construct it from the very first agent theory principles & discrete mathematics.</p>
-        <p>I formalized BRAIN as a five tuple: <strong>⟨S,A,P,π,R,M⟩</strong>, explicitly grounding its behaviorin theoretical decision-making models and memory persistence mech-anisms.</p>
+      <div class="research-card featured">
+        <div class="research-icon">⚡</div>
+        <h2>BRAIN: A First Principles Blueprint for Cognitive Agents</h2>
+        <p>During my internship at Engine CX I built <strong>BRAIN</strong>. I decided to construct it from the very first agent theory principles and discrete mathematics.</p>
+        <p>I formalized BRAIN as a five tuple: <strong>⟨S,A,P,π,R,M⟩</strong>, explicitly grounding its behavior in theoretical decision-making models and memory persistence mechanisms.</p>
         <p>Beyond technical detail, BRAIN serves as a philosophical statement: a return to first principles as the true foundation for engineering intelligence.</p>
       </div>
 
     </div>
   </div>
 
-  <div style="text-align: center;">
-    <a href="https://anapaolaoviedo.github.io/" class="back-home-button">
-      ← Back to Home
+  <section class="back-section">
+    <a href="index.html" class="back-home-button">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
     </a>
-  </div>
+  </section>
 
   <footer>
-    <p>Ana Paola Oviedo &copy; 2025</p>
+    <p>Ana Paola Oviedo © 2025 · Exploring the foundations of intelligence</p>
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const researchCards = document.querySelectorAll('.research-category-card');
+    // Create constellation background
+    function createConstellation() {
+      const constellation = document.getElementById('constellation');
+      const starCount = 50;
 
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        constellation.appendChild(star);
+      }
+    }
 
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
+    createConstellation();
 
-      researchCards.forEach(card => {
-        card.classList.add('fade-in-section');
-        observer.observe(card);
+    // Fade in on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
+    }, observerOptions);
+
+    document.querySelectorAll('.research-card').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>

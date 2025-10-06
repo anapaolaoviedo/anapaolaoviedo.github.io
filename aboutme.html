@@ -5,304 +5,632 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="disk.png">
   <title>About Me — Ana Paola Oviedo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
-    /* Define a more professional yet warm color palette (consistent with index.html) */
     :root {
-      --primary-pink: #e788a8; /* Muted Rose Pink */
-      --light-pink: #fce9ef;  /* Very Light Pink */
-      --accent-pink: #c94b7b; /* Darker Pink for accents/hovers */
-      --background-light: #fdfdfd; /* Off-white for background */
-      --text-dark: #444444;    /* Soft Black/Dark Gray */
-      --border-light: #eeeeee; /* Light Gray for borders */
+      --primary: #ff6b9d;
+      --secondary: #c44569;
+      --accent: #ffc6d9;
+      --dark: #1a1a2e;
+      --darker: #0f0f1e;
+      --light: #f8f9fa;
+      --purple: #a29bfe;
+      --yellow: #ffeaa7;
+      --blue: #74b9ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      80% {
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--background-light);
-      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      overflow-x: hidden;
       line-height: 1.6;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
+      position: relative;
     }
 
-    header {
-      background: var(--primary-pink);
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      /* For subtle parallax, uncomment if you add a background image */
-      /* background-attachment: fixed; */
-      /* background-position: center; */
-      /* background-size: cover; */
-      /* background-image: url('path/to/your/professional-header-image.jpg'); */
+    /* Fun floating shapes */
+    .shapes {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      font-weight: 700;
+    .shape {
+      position: absolute;
+      opacity: 0.3;
+      animation: float 8s ease-in-out infinite;
     }
 
-    .container {
-      flex: 1;
+    .shape.circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--purple));
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape.square {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent), var(--yellow));
+      top: 60%;
+      right: 15%;
+      animation-delay: 1s;
+      border-radius: 20px;
+    }
+
+    .shape.triangle {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid var(--blue);
+      opacity: 0.2;
+      top: 30%;
+      right: 5%;
+      animation-delay: 2s;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: rgba(15, 15, 30, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-button {
+      padding: 0.7rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-button:hover {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+    }
+
+    .nav-button.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
       align-items: center;
-      padding: 2rem 1rem;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .profile-side {
+      text-align: center;
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .profile-pic-container {
+      position: relative;
+      display: inline-block;
+      animation: popIn 1s ease-out 0.3s backwards;
     }
 
     .profile-pic {
-      width: 200px;
-      height: 200px;
+      width: 280px;
+      height: 280px;
       object-fit: cover;
       border-radius: 50%;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-      margin-bottom: 2.5rem;
-      border: 4px solid var(--primary-pink);
+      border: 6px solid var(--primary);
+      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.5);
+      transition: transform 0.3s ease;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      width: 90%;
+    .profile-pic:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
+
+    .sparkles {
+      position: absolute;
+      font-size: 2rem;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+
+    .sparkle-1 {
+      top: -10px;
+      left: -10px;
+      animation-delay: 0s;
+    }
+
+    .sparkle-2 {
+      top: -10px;
+      right: -10px;
+      animation-delay: 0.5s;
+    }
+
+    .sparkle-3 {
+      bottom: -10px;
+      left: -10px;
+      animation-delay: 1s;
+    }
+
+    .sparkle-4 {
+      bottom: -10px;
+      right: -10px;
+      animation-delay: 1.5s;
+    }
+
+    .intro-side {
+      animation: slideInRight 1s ease-out;
+    }
+
+    .intro-side h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .intro-side h2 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .intro-side p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .fun-facts-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: linear-gradient(135deg, var(--purple), var(--primary));
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      animation: bounce 2s ease-in-out infinite;
+      box-shadow: 0 10px 30px rgba(162, 155, 254, 0.4);
+    }
+
+    /* Bento Grid Section */
+    .bento-section {
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bento-container {
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .box {
-      background: white;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      border: 1px solid var(--border-light);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .bento-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
 
-    h2 {
-      color: var(--accent-pink);
-      margin-top: 0;
-      font-size: 1.6rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 0.7rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    p {
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-    p:last-child {
-        margin-bottom: 0;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 0.5rem;
-    }
-
-    ul li {
-      padding: 0.5rem 0;
-      border-bottom: 1px dotted var(--border-light);
-      transition: color 0.3s ease;
+    .bento-card {
+      background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(162, 155, 254, 0.05) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 2.5rem;
+      transition: all 0.4s ease;
       position: relative;
-      padding-left: 10px;
+      overflow: hidden;
     }
-    ul li:last-child {
-      border-bottom: none;
-    }
-    ul li:hover {
-      color: var(--accent-pink);
-    }
-    /* Optional: Subtle line on hover for list items */
-    ul li::after {
+
+    .bento-card::before {
       content: '';
       position: absolute;
-      left: 0;
-      bottom: 5px; /* Adjust if needed */
-      width: 0;
-      height: 2px;
-      background-color: var(--accent-pink);
-      transition: width 0.3s ease-out;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--primary), var(--purple), var(--blue), var(--accent));
+      border-radius: 30px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
     }
 
-    ul li:hover::after {
-      width: 100%;
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-10px) rotate(2deg);
+      box-shadow: 0 25px 50px rgba(255, 107, 157, 0.3);
+    }
+
+    .bento-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: wiggle 3s ease-in-out infinite;
+    }
+
+    .bento-card h3 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .bento-card p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .bento-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .bento-card ul li {
+      padding: 0.8rem 0;
+      color: rgba(255, 255, 255, 0.8);
+      position: relative;
+      padding-left: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .bento-card ul li::before {
+      content: '📖';
+      position: absolute;
+      left: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .bento-card ul li:hover {
+      padding-left: 2.5rem;
+      color: var(--accent);
+    }
+
+    .bento-card ul li:hover::before {
+      transform: scale(1.3) rotate(10deg);
+    }
+
+    /* Large feature card */
+    .bento-large {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(162, 155, 254, 0.15) 0%, rgba(255, 107, 157, 0.1) 100%);
+    }
+
+    /* Back Button */
+    .back-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
     .back-home-button {
-      background-color: var(--primary-pink);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--purple));
       color: white;
-      padding: 12px 24px;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      display: inline-block;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-home-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .back-home-button:hover::before {
+      width: 400px;
+      height: 400px;
     }
 
     .back-home-button:hover {
-      background-color: var(--accent-pink);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(255, 107, 157, 0.6);
     }
 
+    .back-home-button i {
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-home-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 1.2rem;
-      background: var(--primary-pink);
-      color: white;
-      font-size: 0.85rem;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-      flex-shrink: 0;
+      padding: 2rem;
+      background: var(--darker);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
     }
 
-    /* Smooth scrolling (though not as relevant on a short page) */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Fade-in on scroll animation */
-    .fade-in-section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      will-change: opacity, transform;
-    }
-
-    .fade-in-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      header {
-        padding: 2.5rem 1rem;
-      }
-      header h1 {
-        font-size: 2.2rem;
-      }
-      .profile-pic {
-        width: 150px;
-        height: 150px;
-        margin-bottom: 2rem;
-      }
-      .grid {
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-content {
         grid-template-columns: 1fr;
-        gap: 1rem;
-        width: 95%;
+        gap: 3rem;
       }
-      .box {
-        padding: 1.5rem;
-        border-radius: 0.8rem;
+
+      .bento-large {
+        grid-column: span 1;
       }
-      h2 {
-        font-size: 1.4rem;
-      }
-      .back-home-button {
-        padding: 10px 20px;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-      }
-      footer {
+    }
+
+    @media (max-width: 768px) {
+      nav {
         padding: 1rem;
+        gap: 0.5rem;
+      }
+
+      .nav-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .profile-pic {
+        width: 200px;
+        height: 200px;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-side h1 {
+        font-size: 2.5rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>About Me</h1>
-  </header>
+  <div class="shapes">
+    <div class="shape circle"></div>
+    <div class="shape square"></div>
+    <div class="shape triangle"></div>
+  </div>
 
-  <div class="container">
-    <img src="mypic.svg" alt="Ana Paola smiling" class="profile-pic fade-in-section">
+  <nav>
+    <a href="index.html" class="nav-button">Home</a>
+    <a href="aboutme.html" class="nav-button active">About Me</a>
+    <a href="thoughts.html" class="nav-button">Thoughts</a>
+    <a href="projects.html" class="nav-button">Projects</a>
+    <a href="research.html" class="nav-button">Research & Self-Study</a>
+  </nav>
 
-    <div class="grid">
-      <div class="box fade-in-section">
-        <h2>Hello! I'm Ana Paola ✨</h2>
-        <p>I'm a computer science student at Tec de Monterrey, deeply passionate about theoretical CS, AI, and the intersection of technology and ethics. I believe in creating technology that empowers, protects, and uplifts humans. Human-centered technology is the way to go!</p>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="profile-side">
+        <div class="profile-pic-container">
+          <span class="sparkles sparkle-1">✨</span>
+          <span class="sparkles sparkle-2">⭐</span>
+          <span class="sparkles sparkle-3">💫</span>
+          <span class="sparkles sparkle-4">✨</span>
+          <img src="mypic.svg" alt="Ana Paola smiling" class="profile-pic">
+        </div>
+        <div style="margin-top: 2rem;">
+          <span class="fun-facts-badge">💗 Dreamer & Builder 💗</span>
+        </div>
       </div>
 
-      <div class="box fade-in-section">
-        <h2>What I'm focusing on 💡</h2>
-        <p>My current focus is on AI development, theoretical machine learning, and building tools that combine science, ethics, and creativity.</p>
-      </div>
-
-      <div class="box fade-in-section">
-        <h2>Beyond tech 🌸</h2>
-        <p>Outside of tech, I'm in love with literature, philosophy books, and Michelangelo's art. I also enjoy journaling, gym workouts, and dreaming about how technology can shape the future for good.</p>
-      </div>
-
-      <div class="box fade-in-section">
-        <h2>Fun facts 💫</h2>
-        <p>My biggest strength? Discipline. My biggest dream? To leave a mark as a scientist and thinker, and make the world a little brighter (and pinker 💗).</p>
-        <p>All my vision boards come true — magic? Or unstoppable determination? 😉</p>
-      </div>
-
-      <div class="box fade-in-section">
-        <h2>Top favorite books 📚</h2>
-        <ul>
-          <li>Babel by R.F. Kuang</li>
-          <li>Frankenstein by Mary Shelley</li>
-          <li>The Secret History by Donna Tartt</li>
-        </ul>
+      <div class="intro-side">
+        <h1>Hey, I'm Ana Paola!</h1>
+        <h2>🌸 Computer Scientist & Eternal Optimist</h2>
+        <p>
+          I'm on a mission to build technology that feels like magic but works like science. Currently studying at Tec de Monterrey, where I spend my days diving deep into AI, theoretical CS, and dreaming up systems that are both brilliant and kind.
+        </p>
+        <p style="font-size: 1.2rem; color: var(--accent);">
+          "Can a machine think?" - Alan Turing
+        </p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div style="text-align: center;">
-    <a href="https://anapaolaoviedo.github.io/" class="back-home-button">
-      ← Back to Home
+  <section class="bento-section">
+    <div class="bento-container">
+      <h2 class="bento-title">Getting to Know Me ✨</h2>
+      
+      <div class="bento-grid">
+        <div class="bento-card">
+          <span class="bento-icon">💡</span>
+          <h3>What Drives Me</h3>
+          <p>AI development, theoretical machine learning, and building tools that fuse science, ethics, and pure creativity. I want to create systems that don't just compute—they care.</p>
+        </div>
+
+        <div class="bento-card">
+          <span class="bento-icon">🌸</span>
+          <h3>Beyond Code</h3>
+          <p>Literature lover, philosophy nerd, Michelangelo enthusiast. You'll find me journaling my thoughts, hitting the gym, or planning how tech can paint the future brighter (and pinker! 💗).</p>
+        </div>
+
+        <div class="bento-card bento-large">
+          <span class="bento-icon">✨</span>
+          <h3>The Magic Formula</h3>
+          <p><strong>Biggest strength?</strong> Discipline. The kind that turns dreams into reality.</p>
+          <p><strong>Biggest dream?</strong> To leave my mark as a scientist and thinker who made the world shimmer a little brighter.</p>
+          <p><strong>Secret power?</strong> Just pure love for what I do. Everyday I wake up blissful knowing I ge to do what I love.</p>
+        </div>
+
+        <div class="bento-card">
+          <span class="bento-icon">📚</span>
+          <h3>Current Reads</h3>
+          <ul>
+            <li>Babel by R.F. Kuang</li>
+            <li>Frankenstein by Mary Shelley</li>
+            <li>The Secret History by Donna Tartt</li>
+          </ul>
+        </div>
+
+        <div class="bento-card">
+          <span class="bento-icon">🎯</span>
+          <h3>My Philosophy</h3>
+          <p>Technology should empower, protect, and uplift humans. Human-centered design isn't just a buzzword—it's the only way forward. Let's build things that matter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="back-section">
+    <a href="index.html" class="back-home-button">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
     </a>
-  </div>
+  </section>
 
   <footer>
-    <p>Ana Paola Oviedo &copy; 2025</p>
+    <p>Ana Paola Oviedo © 2025 · Made with 💗 and lots of coffee</p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.profile-pic, .box');
-
-      const observerOptions = {
-        root: null, // relative to the viewport
-        rootMargin: '0px',
-        threshold: 0.1 // Trigger when 10% of the item is visible
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target); // Stop observing once animated
-          }
-        });
-      }, observerOptions);
-
-      animatedElements.forEach(element => {
-        element.classList.add('fade-in-section'); // Add initial hidden state
-        observer.observe(element);
-      });
-    });
-  </script>
 </body>
 </html>

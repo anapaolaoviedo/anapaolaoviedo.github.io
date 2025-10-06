@@ -5,425 +5,625 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="disk.png">
   <title>Projects — Ana Paola Oviedo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
-    /* Consistent Color Palette */
     :root {
-      --primary-pink: #e788a8; /* Muted Rose Pink */
-      --light-pink: #fce9ef;  /* Very Light Pink */
-      --accent-pink: #c94b7b; /* Darker Pink for accents/hovers */
-      --background-light: #fdfdfd; /* Off-white for background */
-      --text-dark: #444444;    /* Soft Black/Dark Gray */
-      --border-light: #eeeeee; /* Light Gray for borders */
-      --border-accent: #f5d1de; /* Slightly darker pink for border hover */
+      --primary: #ff6b9d;
+      --secondary: #c44569;
+      --accent: #ffc6d9;
+      --dark: #1a1a2e;
+      --darker: #0f0f1e;
+      --light: #f8f9fa;
+      --purple: #a29bfe;
+      --green: #00b894;
+      --yellow: #fdcb6e;
+      --blue: #74b9ff;
+    }
 
-      /* Project status colors */
-      --status-complete: #28a745; /* Green for complete */
-      --status-in-progress: #ffc107; /* Yellow for in progress */
-      --status-low-impact: #6c757d; /* Gray for lower impact */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(255, 107, 157, 0.7); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--background-light);
-      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      overflow-x: hidden;
       line-height: 1.6;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
+      position: relative;
     }
 
-    header {
-      background: var(--primary-pink);
+    /* Decorative grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 107, 157, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 107, 157, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: rgba(15, 15, 30, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-button {
+      padding: 0.7rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-button:hover {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      padding: 3rem 2rem;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+    }
+
+    .nav-button.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Header */
+    header {
+      padding: 10rem 2rem 5rem;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 50%, var(--accent) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: shimmer 3s ease-in-out infinite;
     }
 
+    header p {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Container */
     .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1rem;
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      width: 90%;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
+    /* Project Cards */
     .project-card {
-      background: white;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      border: 1px solid var(--border-light);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
-      display: flex;
-      flex-direction: column;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-radius: 25px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--purple), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      border-color: var(--border-accent); /* Dynamic border change on hover */
+      transform: translateY(-15px);
+      background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(162, 155, 254, 0.05) 100%);
+      border-color: var(--primary);
+      box-shadow: 0 25px 60px rgba(255, 107, 157, 0.25);
+    }
+
+    .project-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-icon {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .project-card h2 {
-      color: var(--accent-pink);
-      margin-top: 0;
-      font-size: 1.6rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 0.7rem;
+      font-size: 1.8rem;
+      color: var(--accent);
       margin-bottom: 1rem;
-      font-weight: 600;
-      display: flex; /* For aligning icon in heading */
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .project-card h2 i {
-        font-size: 1.2em; /* Adjust icon size in heading */
-        color: var(--primary-pink);
+      font-weight: 700;
+      line-height: 1.3;
     }
 
     .project-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
     }
 
-    .project-meta span {
-      background-color: var(--light-pink);
-      padding: 0.4rem 0.8rem;
-      border-radius: 0.5rem;
-      color: var(--text-dark);
-      font-weight: 500;
-      display: flex;
+    .badge {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.4rem;
     }
 
-    .project-meta .status.complete { background-color: var(--status-complete); color: white; }
-    .project-meta .status.in-progress { background-color: var(--status-in-progress); color: var(--text-dark); }
-    .project-meta .impact.high { background-color: var(--accent-pink); color: white; }
-    .project-meta .impact.very-high { background-color: var(--accent-pink); color: white; }
-    .project-meta .impact.medium-high { background-color: var(--primary-pink); color: white; }
-    .project-meta .impact.medium { background-color: var(--primary-pink); color: white; }
-    .project-meta .impact.low-medium { background-color: var(--status-low-impact); color: white; }
-    .project-meta .impact.potentially-high { background-color: var(--status-in-progress); color: var(--text-dark); }
+    .status-badge {
+      background: var(--green);
+      color: white;
+    }
 
+    .status-badge.in-progress {
+      background: var(--yellow);
+      color: var(--darker);
+    }
 
-    .project-card p {
-      flex-grow: 1;
-      margin-bottom: 1rem;
+    .impact-badge {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .impact-badge.medium {
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+    }
+
+    .impact-badge.low {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--light);
+    }
+
+    .type-badge {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .project-card ul {
       list-style: none;
       padding: 0;
-      margin-top: 0;
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem; /* More space before the GitHub link */
+      margin: 1.5rem 0;
     }
 
     .project-card ul li {
-      padding: 0.5rem 0; /* Adjusted padding */
-      border-bottom: 1px dotted var(--border-light);
+      padding: 0.8rem 0;
+      color: rgba(255, 255, 255, 0.8);
       position: relative;
-      padding-left: 1.2rem;
+      padding-left: 1.8rem;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
     }
+
     .project-card ul li:last-child {
       border-bottom: none;
     }
+
     .project-card ul li::before {
-      content: '•';
-      color: var(--accent-pink);
+      content: '→';
       position: absolute;
       left: 0;
-      top: 0.4rem; /* Adjusted for better alignment */
-      font-size: 1.2em;
-      line-height: 1;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card ul li:hover {
+      padding-left: 2.3rem;
+      color: var(--accent);
+    }
+
+    .project-card ul li:hover::before {
+      transform: translateX(5px);
     }
 
     .github-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background-color: #333;
+      gap: 0.7rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #333 0%, #000 100%);
       color: white;
-      padding: 0.8rem 1.2rem;
-      border-radius: 6px;
       text-decoration: none;
+      border-radius: 50px;
       font-weight: 600;
-      margin-top: auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      font-size: 1rem;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
     .github-link:hover {
-      background-color: #000;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #000 0%, var(--primary) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .github-link i {
+      font-size: 1.3rem;
+    }
+
+    /* Back Button */
+    .back-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
     .back-home-button {
-      background-color: var(--primary-pink);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--purple));
       color: white;
-      padding: 12px 24px;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      display: inline-block;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-home-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .back-home-button:hover::before {
+      width: 400px;
+      height: 400px;
     }
 
     .back-home-button:hover {
-      background-color: var(--accent-pink);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(255, 107, 157, 0.6);
     }
 
+    .back-home-button i,
+    .back-home-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 1.2rem;
-      background: var(--primary-pink);
-      color: white;
-      font-size: 0.85rem;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-      flex-shrink: 0;
+      padding: 2rem;
+      background: var(--darker);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
     }
 
-    /* Fade-in on scroll animation */
-    .fade-in-section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      will-change: opacity, transform;
-    }
-
-    .fade-in-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      header {
-        padding: 2.5rem 1rem;
-      }
-      header h1 {
-        font-size: 2.2rem;
-      }
+    /* Responsive */
+    @media (max-width: 968px) {
       .projects-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        width: 95%;
       }
-      .project-card {
-        padding: 1.5rem;
-        border-radius: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+        gap: 0.5rem;
       }
-      .project-card h2 {
-        font-size: 1.4rem;
-      }
-      .project-meta span {
-        padding: 0.3rem 0.6rem;
+
+      .nav-button {
+        padding: 0.6rem 1.2rem;
         font-size: 0.85rem;
       }
-      .github-link {
-        padding: 0.7rem 1rem;
-        font-size: 0.9rem;
+
+      header {
+        padding: 7rem 1.5rem 4rem;
       }
-      .back-home-button {
-        padding: 10px 20px;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+
+      header h1 {
+        font-size: 2.5rem;
       }
-      footer {
-        padding: 1rem;
+
+      .projects-grid {
+        gap: 2rem;
+      }
+
+      .project-card {
+        padding: 2rem;
       }
     }
   </style>
 </head>
 <body>
 
+  <nav>
+    <a href="index.html" class="nav-button">Home</a>
+    <a href="aboutme.html" class="nav-button">About Me</a>
+    <a href="thoughts.html" class="nav-button">Thoughts</a>
+    <a href="projects.html" class="nav-button active">Projects</a>
+    <a href="research.html" class="nav-button">Research & Self-Study</a>
+  </nav>
+
   <header>
     <h1>My Projects</h1>
+    <p>Building systems that bridge logic and creativity, from AI microservices to ethical analyzers</p>
   </header>
 
   <div class="container">
     <div class="projects-grid">
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-brain"></i> BRAIN – AI Agent Microservice</h2>
+      <div class="project-card">
+        <div class="project-icon">🧠</div>
+        <h2>BRAIN – AI Agent Microservice</h2>
         <div class="project-meta">
-          <span class="status complete">✅ Complete</span>
-          <span>Type: AI / Backend / Microservices</span>
-          <span class="impact very-high">Impact: Very High</span>
+          <span class="badge status-badge">✅ Complete</span>
+          <span class="badge impact-badge">⚡ Very High Impact</span>
+          <span class="badge type-badge">AI / Backend</span>
         </div>
         <ul>
-          <li><strong>Spearheaded the development</strong> of an AI microservice during an internship at EngineCX.</li>
-          <li><strong>Automated car insurance workflows</strong> via WhatsApp integration, enhancing customer engagement.</li>
-          <li><strong>Engineered a comprehensive pipeline</strong> utilizing NLP, memory management, decision logic, and business tools (spaCy-LLM, Redis, PostgreSQL, FastAPI).</li>
-          <li><strong>Achieved a 95% reduction in lead processing time</strong>, demonstrating significant enterprise-level operational impact.</li>
+          <li><strong>Spearheaded development</strong> of an AI microservice during EngineCX internship</li>
+          <li><strong>Automated car insurance workflows</strong> via WhatsApp integration</li>
+          <li><strong>Engineered comprehensive pipeline</strong> using NLP, memory management, decision logic (spaCy-LLM, Redis, PostgreSQL, FastAPI)</li>
+          <li><strong>Achieved 95% reduction</strong> in lead processing time</li>
         </ul>
         <a href="https://github.com/anapaolaoviedo/alia_brain_microservice" target="_blank" class="github-link">
           <i class="fab fa-github"></i> View on GitHub
         </a>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-book"></i> LexiVault – Personal Knowledge Engine</h2>
+      <div class="project-card">
+        <div class="project-icon">📚</div>
+        <h2>LexiVault – Personal Knowledge Engine</h2>
         <div class="project-meta">
-          <span class="status in-progress">🛠️ In progress</span>
-          <span>Type: SWE / Backend API</span>
-          <span class="impact very-high">Impact: Very High</span>
+          <span class="badge status-badge in-progress">🛠️ In Progress</span>
+          <span class="badge impact-badge">⚡ Very High Impact</span>
+          <span class="badge type-badge">Backend API</span>
         </div>
         <ul>
-          <li><strong>Designed and implemented a robust backend API</strong> showcasing strong software engineering practices.</li>
-          <li><strong>Demonstrated proficiency</strong> in FastAPI, Pydantic, OpenAPI, and Pytest for validation and testing.</li>
-          <li><strong>Developed a versatile system</strong> that bridges structured thought with engineering clarity, adaptable for various knowledge management domains.</li>
-          <li><strong>Built a reusable foundation</strong> for productivity tools, knowledge bases, and personal tooling.</li>
+          <li><strong>Designed robust backend API</strong> showcasing strong software engineering practices</li>
+          <li><strong>Demonstrated proficiency</strong> in FastAPI, Pydantic, OpenAPI, and Pytest</li>
+          <li><strong>Developed versatile system</strong> bridging structured thought with engineering clarity</li>
+          <li><strong>Built reusable foundation</strong> for productivity tools and knowledge bases</li>
         </ul>
         <a href="https://github.com/anapaolaoviedo/LexiVault" target="_blank" class="github-link">
           <i class="fab fa-github"></i> View on GitHub
         </a>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-mobile-alt"></i> Horizons: Vocational Guidance iOS App</h2>
+      <div class="project-card">
+        <div class="project-icon">🌅</div>
+        <h2>Horizons: Vocational Guidance iOS App</h2>
         <div class="project-meta">
-          <span class="status complete">✅ Complete</span>
-          <span>Type: Hackathon / Backend / Mobile App / UI Engineering / Frontend / Education</span>
-          <span class="impact very-high">Impact: Very High</span>
+          <span class="badge status-badge">✅ Complete</span>
+          <span class="badge impact-badge">⚡ Very High Impact</span>
+          <span class="badge type-badge">Hackathon / Mobile</span>
         </div>
         <ul>
-  <li><strong>Shipped a hackathon prototype solo in under 24 hours</strong>, building a vocational guidance platform end-to-end with zero sleep.</li>
-  <li><strong>Architected a microservice ecosystem</strong> with a SwiftUI iOS app and two FastAPI services (Horizons API for identity/data, BRAIN AI for reasoning).</li>
-  <li><strong>Implemented an agent-based AI service</strong> combining NLP, rule/decision engines, and policy handling to deliver actionable guidance.</li>
-  <li><strong>Engineered durable state and memory</strong> via PostgreSQL (long-term logs/profiles) and Redis (real-time context), exposed through clean REST webhooks.</li>
-
-</ul>
+          <li><strong>Shipped hackathon prototype solo</strong> in under 24 hours end-to-end</li>
+          <li><strong>Architected microservice ecosystem</strong> with SwiftUI iOS app and two FastAPI services</li>
+          <li><strong>Implemented agent-based AI service</strong> combining NLP, rule/decision engines</li>
+          <li><strong>Engineered durable state</strong> via PostgreSQL and Redis with REST webhooks</li>
+        </ul>
         <a href="https://github.com/anapaolaoviedo/HorizonsApp" target="_blank" class="github-link">
           <i class="fab fa-github"></i> View on GitHub
         </a>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-mobile-alt"></i> Vibely – iOS App</h2>
+      <div class="project-card">
+        <div class="project-icon">📱</div>
+        <h2>Vibely – iOS App</h2>
         <div class="project-meta">
-          <span class="status in-progress">🛠️ In progress</span>
-          <span>Type: Mobile App / UI Engineering</span>
-          <span class="impact medium-high">Impact: Medium-High</span>
+          <span class="badge status-badge in-progress">🛠️ In Progress</span>
+          <span class="badge impact-badge medium">💫 Medium-High Impact</span>
+          <span class="badge type-badge">Mobile / UI</span>
         </div>
         <ul>
-          <li><strong>Developing a mobile application</strong> using Swift and SwiftUI, employing the MVVM architectural pattern.</li>
-          <li><strong>Focused on creating a compelling user experience</strong> with a contemporary, Gen Z-inspired design and emotional media integration.</li>
-          <li><strong>Showcases expertise in frontend and mobile development</strong>, highlighting creativity, brand sensibility, and modern iOS 17 design principles.</li>
-          <li><strong>Provides a strong contrast</strong> to backend work, demonstrating broad technical versatility.</li>
+          <li><strong>Developing mobile application</strong> using Swift and SwiftUI with MVVM pattern</li>
+          <li><strong>Creating compelling UX</strong> with Gen Z-inspired design and emotional media</li>
+          <li><strong>Showcases expertise</strong> in frontend and modern iOS 17 design principles</li>
+          <li><strong>Demonstrates broad technical versatility</strong> contrasting backend work</li>
         </ul>
         <a href="https://github.com/anapaolaoviedo/vibelyApp" target="_blank" class="github-link">
           <i class="fab fa-github"></i> View on GitHub
         </a>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-shield-alt"></i> AIE – AI Ethical Analyzer</h2>
+      <div class="project-card">
+        <div class="project-icon">⚖️</div>
+        <h2>AIE – AI Ethical Analyzer</h2>
         <div class="project-meta">
-          <span class="status complete">✅ Complete</span>
-          <span>Type: AI Ethics / Static Analysis Tool</span>
-          <span class="impact medium">Impact: Medium</span>
+          <span class="badge status-badge">✅ Complete</span>
+          <span class="badge impact-badge medium">💫 Medium Impact</span>
+          <span class="badge type-badge">AI Ethics</span>
         </div>
         <ul>
-          <li><strong>Developed an AI system</strong> utilizing NLP and static code analysis to identify ethical risks (e.g., bias, opacity) in AI models.</li>
-          <li><strong>Capable of analyzing both model code and associated documentation</strong> (PyTorch, scikit-learn, TensorFlow).</li>
-          <li><strong>Represents a strong niche project</strong> emphasizing commitment to ethical AI principles and responsible technology development.</li>
-          <li><strong>Valuable for academic or research-oriented roles</strong> focusing on AI governance and fairness.</li>
+          <li><strong>Developed AI system</strong> using NLP and static code analysis for ethical risk detection</li>
+          <li><strong>Analyzes model code and documentation</strong> (PyTorch, scikit-learn, TensorFlow)</li>
+          <li><strong>Strong niche project</strong> emphasizing commitment to ethical AI principles</li>
+          <li><strong>Valuable for research roles</strong> focusing on AI governance and fairness</li>
         </ul>
         <a href="https://github.com/anapaolaoviedo/AIE" target="_blank" class="github-link">
           <i class="fab fa-github"></i> View on GitHub
         </a>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-video"></i> Streaming Service App (C++)</h2>
+      <div class="project-card">
+        <div class="project-icon">🎬</div>
+        <h2>Streaming Service App (C++)</h2>
         <div class="project-meta">
-          <span class="status complete">✅ Complete</span>
-          <span>Type: OOP / CS Fundamentals</span>
-          <span class="impact medium">Impact: Medium</span>
+          <span class="badge status-badge">✅ Complete</span>
+          <span class="badge impact-badge medium">💫 Medium Impact</span>
+          <span class="badge type-badge">OOP / C++</span>
         </div>
         <ul>
-          <li><strong>Implemented a streaming service application</strong> demonstrating strong command of Object-Oriented Programming (OOP) principles.</li>
-          <li><strong>Showcased practical application</strong> of design patterns, polymorphism, inheritance, and modularity in C++.</li>
-          <li><strong>Highly relevant for Software Engineering interviews</strong> and foundational system design discussions.</li>
-          <li><strong>Demonstrates core Computer Science fundamentals</strong> and robust class design.</li>
+          <li><strong>Implemented streaming service</strong> demonstrating strong OOP principles</li>
+          <li><strong>Showcased practical application</strong> of design patterns, polymorphism, inheritance</li>
+          <li><strong>Highly relevant for SWE interviews</strong> and system design discussions</li>
+          <li><strong>Demonstrates core CS fundamentals</strong> and robust class design</li>
         </ul>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-sort-amount-down-alt"></i> Log Sorting Tool (C++)</h2>
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <h2>Log Sorting Tool (C++)</h2>
         <div class="project-meta">
-          <span class="status complete">✅ Complete</span>
-          <span>Type: Algorithms / Data Structures</span>
-          <span class="impact low-medium">Impact: Low-Medium</span>
+          <span class="badge status-badge">✅ Complete</span>
+          <span class="badge impact-badge low">⭐ Low-Medium Impact</span>
+          <span class="badge type-badge">Algorithms / DSA</span>
         </div>
         <ul>
-          <li><strong>Developed a tool to process and sort log files</strong>, highlighting advanced linked list manipulation.</li>
-          <li><strong>Utilized the QuickSort algorithm</strong> for efficient data organization and implemented robust file I/O operations.</li>
-          <li><strong>Demonstrates fluency in Data Structures and Algorithms (DSA)</strong> through a practical application.</li>
-          <li><strong>Showcases the ability to implement foundational algorithms</strong> effectively in C++.</li>
+          <li><strong>Developed tool to process and sort log files</strong> with linked list manipulation</li>
+          <li><strong>Utilized QuickSort algorithm</strong> for efficient data organization</li>
+          <li><strong>Demonstrates DSA fluency</strong> through practical application</li>
+          <li><strong>Showcases implementation</strong> of foundational algorithms in C++</li>
         </ul>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-hospital"></i> Hospital Farallon – Patient Data System</h2>
+      <div class="project-card">
+        <div class="project-icon">🏥</div>
+        <h2>Hospital Farallon – Patient Data System</h2>
         <div class="project-meta">
-          <span class="status complete">✅ Complete</span>
-          <span>Type: Data Science / SQL</span>
-          <span class="impact medium">Impact: Medium</span>
+          <span class="badge status-badge">✅ Complete</span>
+          <span class="badge impact-badge medium">💫 Medium Impact</span>
+          <span class="badge type-badge">Data Science / SQL</span>
         </div>
         <ul>
-          <li><strong>Gained valuable internship experience</strong> working with real hospital patient data.</li>
-          <li><strong>Applied SQL and Python for comprehensive data organization</strong> and in-depth cohort analysis.</li>
-          <li><strong>Demonstrates practical skills</strong> in data science and database management within a healthcare context.</li>
-          <li><strong>Reinforces resume with real-world application</strong> of data handling and analytical techniques.</li>
+          <li><strong>Gained internship experience</strong> working with real hospital patient data</li>
+          <li><strong>Applied SQL and Python</strong> for data organization and cohort analysis</li>
+          <li><strong>Demonstrates practical skills</strong> in data science and database management</li>
+          <li><strong>Real-world application</strong> of data handling in healthcare context</li>
         </ul>
       </div>
 
-      <div class="project-card fade-in-section">
-        <h2><i class="fas fa-lightbulb"></i> Cognitio – Foundational AI System</h2>
+      <div class="project-card">
+        <div class="project-icon">🔮</div>
+        <h2>Cognitio – Foundational AI System</h2>
         <div class="project-meta">
-          <span class="status in-progress">🛠️ In progress</span>
-          <span>Type: Theoretical AI / Philosophical</span>
-          <span class="impact potentially-high">Impact: Potentially High in Future</span>
+          <span class="badge status-badge in-progress">🛠️ In Progress</span>
+          <span class="badge impact-badge">⚡ Potentially High Impact</span>
+          <span class="badge type-badge">Theoretical AI</span>
         </div>
         <ul>
-          <li><strong>Represents a forward-thinking vision</strong> for AI, grounded in strong ethical and philosophical foundations.</li>
-          <li><strong>Currently in the theoretical and conceptual development phase</strong>, prior to full-scale implementation.</li>
-          <li><strong>Highlights deep interest in the future of AI</strong> and its responsible evolution.</li>
-          <li><strong>Suitable for academic discussions</strong> or demonstrating long-term research aspirations until a more mature prototype is available.</li>
+          <li><strong>Represents forward-thinking vision</strong> for AI with ethical foundations</li>
+          <li><strong>Currently in theoretical phase</strong> prior to full-scale implementation</li>
+          <li><strong>Highlights deep interest</strong> in the future of responsible AI</li>
+          <li><strong>Suitable for academic discussions</strong> and long-term research aspirations</li>
         </ul>
         <a href="https://github.com/anapaolaoviedo/COGNITIO" target="_blank" class="github-link">
           <i class="fab fa-github"></i> View on GitHub
@@ -433,39 +633,34 @@
     </div>
   </div>
 
-  <div style="text-align: center;">
-    <a href="https://anapaolaoviedo.github.io/" class="back-home-button">
-      ← Back to Home
+  <section class="back-section">
+    <a href="index.html" class="back-home-button">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
     </a>
-  </div>
+  </section>
 
   <footer>
-    <p>Ana Paola Oviedo &copy; 2025</p>
+    <p>Ana Paola Oviedo © 2025 · Building the future, one project at a time</p>
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const projectCards = document.querySelectorAll('.project-card');
+    // Fade in on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      projectCards.forEach(card => {
-        card.classList.add('fade-in-section');
-        observer.observe(card);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
+    }, observerOptions);
+
+    document.querySelectorAll('.project-card').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
